@@ -1,0 +1,42 @@
+SRCS_f90d1 = \
+oonew.f90 \
+myitem_list_m.f90 \
+anylist_m.f90 
+
+OBJS_f90d1 = \
+oonew.o \
+myitem_list_m.o \
+anylist_m.o 
+
+SRC_DIR_f90d1 = 
+
+EXE = OOP_linked_list.exe
+FC = ifort
+LD = ifort
+CFLAGS = -g  
+LFLAGS = 
+LIBS = 
+
+OBJS = $(OBJS_f90d1)
+all : $(EXE)
+
+$(EXE) : $(OBJS_f90d1)
+	$(LD) -o $(EXE) $(OBJS) $(LFLAGS) $(LIBS)
+
+$(OBJS_f90d1):
+	$(FC) $(CFLAGS) -c $(SRC_DIR_f90d1)$(@:.o=.f90) -o $@
+
+clean :
+	rm -f *.o *.mod
+	rm -f $(EXE)
+
+# Dependencies of files
+oonew.o: \
+    oonew.f90 \
+    myitem_list_m.o
+myitem_list_m.o: \
+    myitem_list_m.f90 \
+    anylist_m.o
+anylist_m.o: \
+    anylist_m.f90
+
