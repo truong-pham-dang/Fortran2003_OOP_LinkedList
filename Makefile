@@ -1,3 +1,4 @@
+#Makefile for Intel Fortran
 SRCS_f90d1 = \
 oonew.f90 \
 myitem_list_m.f90 \
